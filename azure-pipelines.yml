@@ -21,3 +21,18 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'emartinr'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'emartinr_TFG'
+    cliProjectName: 'TFG'
+    cliSources: '.'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
